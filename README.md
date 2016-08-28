@@ -10,15 +10,15 @@
 For the first download/clone of this repo,
 
 1. Run
-  ```bash
+⋅⋅⋅```bash
   npm install
   ```
 2. Initialize the DB structure by going to `doc/sql_dump/` path and running,
-  ```bash
+⋅⋅⋅```bash
   mysql -u root -p [root_password] xnode > dump.sql
   ```
 3. Once finished start the server as,
-  ```bash
+⋅⋅⋅```bash
   node index.js
   ```
 
