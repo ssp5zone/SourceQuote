@@ -136,7 +136,7 @@ var app = {
 		html.push("<div class='source-container'>— <span class='source'>"+source);
 		if (type) { html.push(" ("+type+")");}
 		html.push("</div></blockquote>");
-		html.push("<aside class='button-panel animated'><button class='blue delete'><span>✖</span></button> <button class='green edit'><span>✎</span></button></aside>");
+		html.push("<aside class='button-panel animated'><button class='lightblue delete'><span>✖</span></button> <button class='green edit'><span>✎</span></button></aside>");
 		html.push("</section>");
 		this.pinSection(html.join(""));
 	},
