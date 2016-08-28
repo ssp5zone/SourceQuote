@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SourceQuote</title>
+		<link rel="stylesheet" type="text/css" href="assets/bower_components/animate.css/animate.min.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/app.css">
+		<script type="text/javascript" src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="assets/bower_components/jsanimatedmodal/animatedModal.min.js"></script>
+		<script type="text/javascript" src="assets/js/app.js"></script>
+	</head>
+	<body>
+		<div id="main-wrapper">
+			<header role="banner">
+				<a class="logo" href="javascript:void(0);">
+					<span>Source</span>Quote
+				</a>
+			</header>
+			<main role="main">
+				<article class="container">
+					<button class="orange add add-quote">+</button>
+					<!-- Dummy section for reference -->
+					<!-- <section id="quote_0">
+						<blockquote>
+									<div class="quote">You’ve heard of the golden rule, haven’t you? Whoever has the gold makes the rules.</div>
+									<div class="source-container">— <span class="source">Crazy hunch-backed old guy in Aladdin</span></div>
+						</blockquote>
+						<aside class="button-panel animated">
+							<button class="blue delete"><span>✖</span></button>
+							<button class="green edit"><span>✎</span></button>
+						</aside>						
+					</section> -->
+					<div id="animated-modal" class="animated animated-modal">
+					    <div class="close-modal center">
+							<button class="blue close"><span>✖</span></button>
+						</div>
+						<section class="container modal-content">
+							<blockquote>
+										<div class="quote">
+											<div class="form-group p-r-15">
+										      <label for="new-quote">Quote:</label>
+										      <textarea placeholder="Add your quote here..." class="form-control" rows="5" id="new-quote"></textarea>
+										    </div>
+										</div>
+										<div class="source-container row">
+											<div class="source pull-left hidden-xs">—</div> 
+											<div class="source col-xs-12 col-md-11 col-sm-11">
+												<div class="form-group col-sm-8 col-md-8 col-xs-12">
+												  <label for="new-source" class="hidden-md hidden-sm hidden-lg">Source:</label>
+											      <input id="new-source" placeholder="Source..." type="text" class="source form-control">
+											    </div>
+												<div class="form-group col-sm-4 col-md-4 col-xs-12">
+												  <label for="new-source-type" class="hidden-md hidden-sm hidden-lg">Source Type:</label>
+											      <input id="new-source-type" placeholder="Source Type (Optional)..." type="text" class="source form-control">
+											    </div>
+											</div>
+										</div>
+							</blockquote>
+						</section>
+						<div class="center">
+							<button id="submit-quote" class="orange close"><span>✔</span></button> 
+							<!-- ✓ -->
+						</div>
+					</div>
+				</article>
+			</main>
+			<footer>
+				<div class="copy-left">
+					<span class="copy-left-symbol">&copy;</span> 
+					<a class="creator" href="javascript:void(0);"><span>Saurabh</span> Parihar</a> 2016
+					<span class="pull-right">Copy-left Licence. Free to copy.</span>
+				</div>
+			</footer>
+		</div>	
+	</body>
+</html>
