@@ -1,5 +1,9 @@
 # SourceQuote
 
+Checkout the Live site: [SourceQuote](http://zone52-initdev.rhcloud.com/).
+
+* **Note:** The site may be down during deployment.
+
 ## Requirements
 
 1. Node.js
