@@ -3,6 +3,8 @@ var bodyParser = require('body-parser')
 var db = require('./dbConnection.js');
 var dbLink = require('./dbLink.js');
 var app = express();
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8787;
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 
 app.use("/assets",express.static(__dirname +'/assets'));
 app.use("/bower_components",express.static(__dirname +'/bower_components'));
@@ -52,7 +54,7 @@ app.put('/update_quote/:id', function (req, res) {
    });
 });
 
-var server = app.listen(8787, function () {
+var server = app.listen(server_port, server_ip_address, function () {
 
   var host = server.address().address;
   var port = server.address().port;
