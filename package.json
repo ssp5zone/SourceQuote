@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "xperiment for node with mysql",
   "main": "index.js",
-  "scripts": {
-    "postinstall": "HOME=$OPENSHIFT_REPO_DIR bower install || bower install",
-    "start": "node index.js"
-  },
   "author": "Me",
   "license": "ISC",
   "devDependencies": {
@@ -16,5 +12,9 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0"
+  },
+  "scripts": {
+    "postinstall": "bower install || HOME=$OPENSHIFT_REPO_DIR bower install",
+    "start": "node index.js"
   }
 }
