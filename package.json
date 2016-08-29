@@ -4,7 +4,7 @@
   "description": "xperiment for node with mysql",
   "main": "index.js",
   "scripts": {
-    "install": "bower install",
+    "postinstall": "HOME=$OPENSHIFT_REPO_DIR bower install || bower install",
     "start": "node index.js"
   },
   "author": "Me",
