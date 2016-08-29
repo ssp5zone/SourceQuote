@@ -5,11 +5,9 @@
   "main": "index.js",
   "author": "Me",
   "license": "ISC",
-  "devDependencies": {
-    "mysql": "^2.11.1",
-    "bower": "^1.7.7"
-  },
   "dependencies": {
+    "mysql": "^2.11.1",
+    "bower": "^1.7.7",
     "body-parser": "^1.15.2",
     "express": "^4.14.0"
   },
