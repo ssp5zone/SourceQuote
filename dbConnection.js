@@ -33,8 +33,8 @@ module.exports = {
 		this.mysql = require("mysql");
 		this.dbConfig={};
 		this.dbConfig.host = process.env.OPENSHIFT_MYSQL_DB_HOST || "localhost";
-		this.dbConfig.user = process.env.OPENSHIFT_MYSQL_DB_PORT || "root";
-		this.dbConfig.password = process.env.OPENSHIFT_MYSQL_DB_USERNAME || "root";
+		this.dbConfig.user = process.env.OPENSHIFT_MYSQL_DB_USERNAME || "root";
+		this.dbConfig.password = process.env.OPENSHIFT_MYSQL_DB_PASSWORD || "root";
 		this.dbConfig.database = "xnode";		
 		this.connection=this.con; // just an alias
 	}
