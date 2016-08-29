@@ -4,12 +4,14 @@
   "description": "xperiment for node with mysql",
   "main": "index.js",
   "scripts": {
-    "install": "bower install"
+    "install": "bower install",
+    "start": "node index.js"
   },
   "author": "Me",
   "license": "ISC",
   "devDependencies": {
-    "mysql": "^2.11.1"
+    "mysql": "^2.11.1",
+    "bower": "^1.7.7"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
