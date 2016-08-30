@@ -28,6 +28,10 @@ node index.js
 
 Once started you can view the page at `http://localhost:8787`.
 
+## Deployment
+
+Refer the docs for [How to deploy on RedHat](/docs/Server_Deployment/RedHat-Deployment.md).
+
 ## Licence
 
 Copy-Left Licence.
