@@ -13,10 +13,10 @@
 
 2. In `git bash here` 
 
-	a. Goto path C:\...<user-name>\.ssh\ .
-	b. Type `ssh-keygen` (Don't give a passphrase). This would generate 2 files ida_rsa and ida_rsa.pub.
-	c. Use this (.pub file contents) as your redhat application key. 
-    d. You can have multiple keys - one from puttygen and one from ssh-keygen.
+	1. Goto path C:\...<user-name>\.ssh\
+	2. Type `ssh-keygen` (Don't give a passphrase). This would generate 2 files ida_rsa and ida_rsa.pub.
+	3. Use this (.pub file contents) as your redhat application key. 
+	4. You can have multiple keys - one from puttygen and one from ssh-keygen.
 
 3. To connect to the remote via ssh terminal (PuTTy), you require a private key too. So, now generate another key (Save as private key) using `puttygen.exe`. Name this file as `default.ppk`. Now you can use this for authentication in putty. Ref: [PuTTy connection to RedHat](https://developers.openshift.com/managing-your-applications/remote-connection.html#common-commands)
 
@@ -61,12 +61,12 @@ That's it. You have added a remote branch that you could seperatly track - indep
 3. In your package.json, add a "start" info. This will ensure that the server is automatically started anytime you have pushed the code. (No need of PuTTy).
     ```json
     {
-    ...,
-    "main": "index.js",
-    "scripts": {
-        "postinstall": "bower install || HOME=$OPENSHIFT_REPO_DIR bower install",
-        "start": "node index.js"
-    }
+	    "main": "index.js",
+	    "scripts": 
+	    {
+	        "postinstall": "bower install || HOME=$OPENSHIFT_REPO_DIR bower install",
+	        "start": "node index.js"
+	    }
     }
     ```
     
