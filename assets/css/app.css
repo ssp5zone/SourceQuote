@@ -165,6 +165,17 @@ header > .logo:hover {
 header > .logo:hover > span {
 	color: #fff;	
 }
+@media (max-width: 767px) {
+	header {
+		height: 55px;
+		padding: 0 15px 0 20px;
+	}
+	header > .logo {
+	    font-size: 20px;
+	    line-height: 53px;
+	}
+}
+
 
 
 /*Footer*/
@@ -208,6 +219,12 @@ header > .logo:hover > span {
     padding-left: 15px;
     padding-right: 15px;
 }
+@media (max-width: 767px) {
+	.container {
+	    padding-left: 0;
+    	padding-right: 0;
+	}
+}
 /*@media (min-width: 768px) {
 	.container {
 	    width: 750px;
@@ -238,10 +255,15 @@ header > .logo:hover > span {
 
 
 /*Main article*/
-main{
+main {
 	display: block;
 	padding-top: 100px;
 	padding-bottom: 45px;
+}
+@media (max-width: 767px) {
+	main {
+		padding-top: 68px;
+	}
 }
 .add-quote {
 	position: fixed;
@@ -280,6 +302,13 @@ blockquote .quote {
 blockquote .source-container {
 	padding-left: 20px;
 }
+
+@media (max-width: 767px) {
+	blockquote .source-container {
+		padding-left: 0;
+	}
+}
+
 blockquote .source {
 	font-size: 0.9em;
     font-weight: bold;
@@ -502,3 +531,11 @@ textarea.form-control {
 @media (min-width: 1200px) {
   .hidden-lg {
     display: none !important; } }
+
+
+/*Spacers*/
+@media (max-width: 767px) {
+	.p-l-0-xs {
+		padding-left: 0;
+	}
+}
