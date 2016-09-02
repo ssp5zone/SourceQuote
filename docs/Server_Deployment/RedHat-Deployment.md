@@ -20,6 +20,17 @@
 
 3. To connect to the remote via ssh terminal (PuTTy), you require a private key too. So, now generate another key (Save as private key) using `puttygen.exe`. Name this file as `default.ppk`. Now you can use this for authentication in putty. Ref: [PuTTy connection to RedHat](https://developers.openshift.com/managing-your-applications/remote-connection.html#common-commands)
 
+4. Connecting from Android,
+
+	1. Get [Termux](https://play.google.com/store/apps/details?id=com.termux&hl=en)
+	2. Run `apt-get update` first.
+	3. Install OpenSSH - `apt install openssh`
+	4. Download the keys (Public keys. Private won't work.).
+	5. Create folder `~/.ssh/authorized_keys`. (First check if `cd ~/.ssh` exists)
+	6. Copy the keys to this folder.
+	7. Run the command `ssh [key]@[domain]-initdev.rhcloud.com`.
+
+
 ## Adding existing git repo to redhat:
 
 The approach to choose here is to clone your other git repo (ex. on bitbucket) to your local machine:
