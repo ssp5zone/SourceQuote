@@ -8,6 +8,7 @@ $(function(){
 var app = {
 	
 	modal: undefined,
+	deleteModal: undefined,
 	editMode: false,
 	stashQuote: undefined,
 
@@ -37,8 +38,9 @@ var app = {
 		}		
 	},
 
-	deleteQuote: function (quote) {
+	deleteQuote: function () {
 		var _this=this;
+		var quote = this.stashQuote;
 		var elementId=quote.attr('id');
 		console.log("Delete event triggered on: "+elementId);
 		var dataId = elementId.slice(6);
@@ -47,9 +49,10 @@ var app = {
 			    type: 'DELETE',
 			    success: function(result) {
 			      console.info("Deleted " + result + " row(s).");
-			      _this.unpinSection(quote);			      
+			      _this.unpinSection(quote);
 			    }
-			});		
+			});
+					
 	},
 
 	updateQuote: function() {
@@ -96,6 +99,11 @@ var app = {
 		this.editMode=true;
 	},
 
+	confirmDelete: function(quote) {
+		this.stashQuote=quote;
+		this.deleteModal.open();
+	},
+
 	modalConfig: function() {
 		this.modal = new AnimatedModal({
 						    color: 'rgb(57, 190, 185)',
@@ -103,6 +111,13 @@ var app = {
 							animatedOut: 'bounceOutDown',
 							closeBtn: '.close-modal', 
 							modalTarget: 'animated-modal'
+						});
+
+		this.deleteModal = new AnimatedModal({
+						    animatedIn: 'bounceInUp', 
+							animatedOut: 'bounceOutDown',
+							closeBtn: '.close-modal', 
+							modalTarget: 'animated-modal-delete'
 						});
 	},
 
@@ -121,8 +136,12 @@ var app = {
 				_this.submitQuote();
 			}
 		});
+		$('#delete-quote').click(function(){
+			_this.deleteModal.close();
+			_this.deleteQuote();
+		});
 		$('main>article').on('click','>section .delete',function() {
-			_this.deleteQuote($(this).parents("section"));
+			_this.confirmDelete($(this).parents("section"));
 		});
 		$('main>article').on('click','>section .edit',function() {
 			_this.editQuote($(this).parents("section"));

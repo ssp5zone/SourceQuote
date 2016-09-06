@@ -75,6 +75,51 @@ button.green:hover {
     background-color: #449d44;
     border-color: #398439;
 }
+button.dark-cyan {
+	background-color: #008b8b;	
+}
+button.dark-cyan:hover {
+	background-color: #007777;
+}
+
+button.mediumseagreen {
+	background-color: #3cb371;	
+}
+
+button.mediumseagreen:hover {
+	background-color: #389662;
+}
+
+button.tomoto {
+	background-color: #ff6347;
+}
+
+button.tomoto:hover {
+	background-color: #d4523b;
+}
+
+button.mediumpurple {
+	background-color: #9370db;
+}
+
+button.mediumpurple:hover {
+	background-color: #795db3;
+}
+
+button.crimson {
+	background-color: #ed143d;
+}
+
+button.crimson:hover {
+	background-color: #dc2447;
+}
+
+button.black {
+	background-color: #aaa;
+}
+button.black:hover {
+	background-color: black;
+}
 button.red {
 	background-color: #d9534f;
     border-color: #d43f3a;
@@ -337,6 +382,10 @@ article>section:hover .button-panel {
     visibility: hidden;
     width: 100%;
     z-index: -10;
+}
+
+.animated-modal-delete {
+	background-color: rgb(81, 179, 234);
 }
 
 .animated-modal-on {
