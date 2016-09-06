@@ -3,22 +3,39 @@
 ## Requirement
 
 1. Git Client.
-2. Putty
+2. Putty*.
 
 * I am lazy to install ruby, otherwise you could use RedHat client too.
 
+`*` _If you are feeling brave enough, no need to for PuTTy. With little imagination, you could use git client's bash prompt to connect to a remote server._
+
+Once, you have created a new account in OpenShift and selected what kind of application you would be hosting; You would be asked to add an SSH key to the application. This key is the key for connecting to the RedHat server from any machine.
+
 ## Generating an SSH key for the application
 
-1. Create a key with git (instead of puttygen) so that git is happy.
+1. Create a key with OpenSSH (instead of puttygen) so that git is happy.
 
-2. In `git bash here` 
+2. To do so, open `git bash`
 
 	1. Goto path C:\...<user-name>\.ssh\
 	2. Type `ssh-keygen` (Don't give a passphrase). This would generate 2 files ida_rsa and ida_rsa.pub.
 	3. Use this (.pub file contents) as your redhat application key. 
-	4. You can have multiple keys - one from puttygen and one from ssh-keygen.
+	4. You can have multiple keys - one from puttygen and one from ssh-keygen in your application.
 
 3. To connect to the remote via ssh terminal (PuTTy), you require a private key too. So, now generate another key (Save as private key) using `puttygen.exe`. Name this file as `default.ppk`. Now you can use this for authentication in putty. Ref: [PuTTy connection to RedHat](https://developers.openshift.com/managing-your-applications/remote-connection.html#common-commands)
+
+4. Connecting from Android,
+
+	1. Get [Termux](https://play.google.com/store/apps/details?id=com.termux&hl=en)
+	2. Run `apt-get update` first.
+	3. Install OpenSSH - `apt install openssh`
+	4. Download your application keys (Public keys. Private won't work.).
+	5. Create folder `~/.ssh/authorized_keys`. (First check if `cd ~/.ssh` exists)
+	6. Copy the keys to this folder.
+	7. Run the command `ssh [key]@[domain]-initdev.rhcloud.com`.
+
+
+Now, you need to push your existing application to the remote server.
 
 ## Adding existing git repo to redhat:
 
@@ -51,6 +68,11 @@ git push openshift HEAD
 That's it. You have added a remote branch that you could seperatly track - independent of your dev build. Whenever you feel the code is stable you can push it to production.
 
 **_Use the above cmd everytime you need to push the code to production (LIVE)._**
+
+Based on your configuration, the server might or might not start automatically after each code push. To manually start the application, connect to the remote server (via PuTTy or bash) and execute,
+```bash
+ctl_app start
+```
 
 ##  Key Points
 
