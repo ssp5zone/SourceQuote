@@ -2,7 +2,7 @@ module.exports = {
 
 	mysql: undefined,
 	con: undefined,
-	connection: undefined,
+	pool: undefined,
 	dbConfig: undefined,
 
 	createConnection: function() {
@@ -32,10 +32,11 @@ module.exports = {
 	init: function() {
 		this.mysql = require("mysql");
 		this.dbConfig={};
+		// this.dbConfig.connectionLimit = 10;
 		this.dbConfig.host = process.env.OPENSHIFT_MYSQL_DB_HOST || "localhost";
 		this.dbConfig.user = process.env.OPENSHIFT_MYSQL_DB_USERNAME || "root";
 		this.dbConfig.password = process.env.OPENSHIFT_MYSQL_DB_PASSWORD || "root";
 		this.dbConfig.database = "xnode";		
-		this.connection=this.con; // just an alias
+		this.pool=this.con; // just an alias
 	}
 }
