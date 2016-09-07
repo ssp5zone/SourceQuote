@@ -3,13 +3,16 @@ var app = express();
 var bodyParser = require('body-parser')
 var dbLink = require('./dbLink.js');
 
+
 // Configuring app's IP and PORT
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8787;
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 
+
 // Registering public(accessible) paths in express
 app.use("/assets",express.static(__dirname +'/assets'));
 app.use("/bower_components",express.static(__dirname +'/bower_components'));
+
 // Adding middleware to understand json format
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -18,16 +21,17 @@ app.use(bodyParser.json())
 // Initializing connections to DB.
 dbLink.initDB();
 
+
+// Binding Callbacks for different uri-request (REST) patterns
 app.get('/', function (req, res) {
    console.log("Got a GET request for the homepage");
    res.sendFile( __dirname + "/" + "index.html" );
-})
-
+});
 
 app.post('/', function (req, res) {
    console.log("Got a POST request for the homepage");
    res.send('Hello POST');
-})
+});
 
 app.get('/get_quotes', function (req, res) {
    console.log("Got a GET request for /get_quotes");
@@ -58,7 +62,7 @@ app.put('/update_quote/:id', function (req, res) {
 });
 
 
-// Starting the server.
+// Start listening to server requests
 var server = app.listen(server_port, server_ip_address, function () {
   var host = server.address().address;
   var port = server.address().port;
