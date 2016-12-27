@@ -297,6 +297,9 @@ header > .logo:hover > span {
 .p-r-15 {
 	padding-right: 15px;
 }
+.pre-wrap {
+  white-space: pre-wrap;
+}
 
 
 /*Main article*/

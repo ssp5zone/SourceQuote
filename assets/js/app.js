@@ -151,7 +151,7 @@ var app = {
 	renderSection: function(id,quote,source,type) {
 		var html = new Array();
 		html.push("<section class='animated bounceInDown' id='quote_"+id+"'><blockquote>");
-		html.push("<div class='quote'>"+quote+"</div>");
+		html.push("<div class='quote pre-wrap'>"+quote+"</div>");
 		html.push("<div class='source-container'>— <span class='source'>"+source);
 		if (type) { html.push(" ("+type+")");}
 		html.push("</div></blockquote>");
