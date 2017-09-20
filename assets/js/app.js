@@ -85,7 +85,7 @@ var app = {
 
 	editQuote: function (quote) {
 		this.stashQuote=quote;
-		$('#new-quote').val(quote.find('.quote').text());
+		$('#new-quote').val(quote.find('.quote').html());
 		var source=quote.find('.source').text().trim();
 		var source_type=undefined;
 		if(source.lastIndexOf(")")==source.length-1 && source.lastIndexOf("(")>0) {
