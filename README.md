@@ -1,6 +1,6 @@
 # SourceQuote
 
-Checkout the Live site: [SourceQuote](http://zone52-initdev.rhcloud.com/).
+Checkout the Live site: [SourceQuote](http://sourcequote-sourcequote.7e14.starter-us-west-2.openshiftapps.com/).
 
 * **Note:** The site may be down during deployment.
 
