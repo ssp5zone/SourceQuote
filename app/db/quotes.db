@@ -1,0 +1,3 @@
+{"test":"DB","_id":"oFlQ5voAYOmEQ8ad","createdAt":{"$$date":1546775879786},"updatedAt":{"$$date":1546775879786}}
+{"test":"updatedDB","_id":"oFlQ5voAYOmEQ8ad","createdAt":{"$$date":1546775879786},"updatedAt":{"$$date":1546775879789}}
+{"$$deleted":true,"_id":"oFlQ5voAYOmEQ8ad"}

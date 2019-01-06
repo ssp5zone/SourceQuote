@@ -10,9 +10,8 @@ var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 
 
 // Registering public(accessible) paths in express
-app.use("/assets",express.static(__dirname +'/assets'));
-app.use("/bower_components",express.static(__dirname +'/bower_components'));
-app.use("/",express.static(__dirname +'/'));
+app.use("/assets",express.static(__dirname +'/root/client/assets'));
+app.use("/",express.static(__dirname +'/root/client'));
 
 // Adding middleware to understand json format
 app.use(bodyParser.urlencoded({ extended: false }))
