@@ -29,9 +29,9 @@ var app = {
 		data.type= $('#new-source-type').val();
 		console.log(data.quote + ", " + data.source + ", " + data.type);
 		if (data.quote && data.source) {
-			$.post('/add_quote', data, function(id) {
-				console.info('Added row: ' + id);
-				_this.renderSection(id, data.quote, data.source, data.type);
+			$.post('/add_quote', data, function(quote) {
+				console.info('Added row: ' + quote);
+				_this.renderSection(quote._id, data.quote, data.source, data.type);
 			});
 		} else {
 			console.warn("Either the source or quote is empty.");
@@ -60,22 +60,23 @@ var app = {
 		this.editMode=false;
 		var elementId=this.stashQuote.attr('id');
 		console.log("Edit event triggered on: "+elementId);
-		var dataId = elementId.slice(6);
 		
 		var data = {};
 		data.quote = $('#new-quote').val();
 		data.source= $('#new-source').val();
 		data.type= $('#new-source-type').val();
-		console.log(data.quote + ", " + data.source + ", " + data.type);
+		data.id = elementId.slice(6);
+
+		console.debug(data.quote + ", " + data.source + ", " + data.type + ", " + data.id);
 		if (data.quote && data.source) {
 			$.ajax({
-			    url: '/update_quote/'+dataId,
+			    url: '/update_quote',
 			    type: 'PUT',
 			    data: data,
 			    success: function(result) {
 			      console.info("Updated " + result + " row(s).");
 			      _this.unpinSection(_this.stashQuote);
-			      _this.renderSection(dataId, data.quote, data.source, data.type);
+			      _this.renderSection(data.id, data.quote, data.source, data.type);
 			    }
 			});
 		} else {

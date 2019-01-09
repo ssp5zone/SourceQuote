@@ -1,28 +1,33 @@
-export class Quote {
+class Quote {
 
-    constructor(source, quote, type) {
-        this.source = source;
-        this.quote = quote;
-        this.type = type;
+    constructor(raw) {
+        this.source = raw.source || raw.s;
+        this.quote = raw.quote || raw.q;
+        this.type = raw.type || raw.t;
+        if(raw.id || raw._id){
+            this.id = raw.id || raw._id;
+        }
     }
 
-    get minified() {
+    getMinified() {
         let min = {
             s: this.source,
             q: this.quote,
             t: this.type,
         };
         if(this.id) {
-            min.$loki = id;
+            min._id = this.id;
         }
         return min;
     }
 
     static fromMin(min) {
         if(!min) return undefined;
-        let quote = new Quote(min.s, min.q, min.t);
-        quote.id = min.$loki;
+        let quote = new Quote(min);
+        quote.id = min._id;
         return quote;
     }
 
 }
+
+module.exports = Quote;

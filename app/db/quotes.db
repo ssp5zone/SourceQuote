@@ -1,3 +1,9 @@
-{"test":"DB","_id":"oFlQ5voAYOmEQ8ad","createdAt":{"$$date":1546775879786},"updatedAt":{"$$date":1546775879786}}
-{"test":"updatedDB","_id":"oFlQ5voAYOmEQ8ad","createdAt":{"$$date":1546775879786},"updatedAt":{"$$date":1546775879789}}
-{"$$deleted":true,"_id":"oFlQ5voAYOmEQ8ad"}
+{"s":"Batman","q":"I am batman.","_id":"7KdwGJqLpZwz683A","createdAt":{"$$date":1547016228909},"updatedAt":{"$$date":1547016228909}}
+{"s":"Iron man","q":"I am Iron man.","_id":"Sy2Rpdc8MLMPhuM5","createdAt":{"$$date":1547016254228},"updatedAt":{"$$date":1547016254228}}
+{"s":"The Kite Runner","q":"For you, a thousand times over.","t":"Novel","_id":"c0tT2wlhzoo0d5Qq","createdAt":{"$$date":1547016008586},"updatedAt":{"$$date":1547016008586}}
+{"s":"Crazy hunch-backed old guy in Aladdin","q":"You've heard of the golden rule, haven't you? Whoever has the gold makes the rules.","t":"Cartoon","_id":"lyfH6voR4iSSoZ5P","createdAt":{"$$date":1547012772295},"updatedAt":{"$$date":1547012772295}}
+{"s":"Shivaji Rao","q":"You can do anything, but not everything.","t":"My Landlord","_id":"pJ4DtdR999Epjt26","createdAt":{"$$date":1547016174114},"updatedAt":{"$$date":1547016174114}}
+{"s":"Batman","q":"I am batman.","t":"Bruce Wayne","_id":"7KdwGJqLpZwz683A","createdAt":{"$$date":1547016228909},"updatedAt":{"$$date":1547017185669}}
+{"s":"Iron man","q":"I am Iron man.","t":"Tony Stark","_id":"Sy2Rpdc8MLMPhuM5","createdAt":{"$$date":1547016254228},"updatedAt":{"$$date":1547017201678}}
+{"$$deleted":true,"_id":"Sy2Rpdc8MLMPhuM5"}
+{"$$deleted":true,"_id":"7KdwGJqLpZwz683A"}
