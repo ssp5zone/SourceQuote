@@ -1,13 +1,12 @@
 # SourceQuote
 
-Checkout the Live site: [SourceQuote](http://sourcequote-sourcequote.7e14.starter-us-west-2.openshiftapps.com/).
+Checkout the Live site: [SourceQuote](https://vast-hollows-31190.herokuapp.com/).
 
 * **Note:** The site may be down during deployment.
 
 ## Requirements
 
 1. Node.js
-2. MySQL
 
 ## Build
 
@@ -17,20 +16,12 @@ For the first download/clone of this repo,
   ```bash
 npm install
   ```
-2.Load the DB 
+2.Start the server
   ```bash
-mysql -u root -p [root_password] xnode < doc/sql_dump/dump.sql
-  ```
-3.Start the server
-  ```bash
-node index.js
+npm start
   ```
 
 Once started you can view the page at `http://localhost:8787`.
-
-## Deployment
-
-Refer the docs for [How to deploy on RedHat](/docs/Server_Deployment/RedHat-Deployment.md).
 
 ## Licence
 
