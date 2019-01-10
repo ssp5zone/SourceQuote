@@ -8,8 +8,8 @@ DynamicRoutes.init(app);
 StaticRoutes.init(app);
 
 // Configuring app's IP and PORT
-const server_port = process.env.OPENSHIFT_NODEJS_PORT || 8787;
-const server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+const server_port = process.env.PORT || 8787;
+const server_ip_address = process.env.IP || '0.0.0.0';
 
 
 // Start listening to server requests
