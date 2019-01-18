@@ -29,9 +29,9 @@ var app = {
 		data.type= $('#new-source-type').val();
 		console.log(data.quote + ", " + data.source + ", " + data.type);
 		if (data.quote && data.source) {
-			$.post('/add_quote', data, function(quote) {
-				console.info('Added row: ' + quote);
-				_this.renderSection(quote._id, data.quote, data.source, data.type);
+			$.post('/add_quote', data, function(id) {
+				console.info('Added row: ' + id);
+				_this.renderSection(id, data.quote, data.source, data.type);
 			});
 		} else {
 			console.warn("Either the source or quote is empty.");

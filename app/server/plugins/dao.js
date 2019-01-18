@@ -1,49 +1,65 @@
-const DataSource =  require('nedb');
-const { promisify } = require('util');
+const MongoClient = require('mongodb').MongoClient;
+const ObjectId = require('mongodb').ObjectId;
 
 class Dao {
 
-    constructor() {
-        
-        this.database = new DataSource({
-            filename: "app/db/quotes.db",
-            autoload: true,
-            timestampData: true,
-        });
-
-        // Initialize async versions of the standard nedb calls
-        this._init();
-        
+    constructor(url, db, collection) {
+        this.init(url, db, collection);
     }
 
-    add(quote) {
-        return this._asyncAdd(quote);
+    async add(quote) {
+        try {
+            const result = await this.collection.insertOne(quote);
+            return result.insertedId;    
+        } catch (err) {
+            return err;
+        }
+        
     }
     
-    remove(id) {
-        return this._asyncRemove({ _id: id }, {});  
+    async remove(id) {
+        try {
+            const result = await this.collection.deleteOne({_id: new ObjectId(id)});
+            return result.deletedCount;
+        }
+        catch (err) {
+            return err;
+        }
     } 
     
-    update(quote){
-        return this._asyncUpdate({ _id: quote._id }, quote, {});
+    async update(quote) {
+        try {
+            const id = new ObjectId(quote._id);
+            delete quote._id;
+            const result = await this.collection.updateOne({_id: id}, {$set: quote});
+            return result.modifiedCount;    
+        } catch (err) {
+            return err;
+        }
+        
     } 
     
-    fetch(page, limit) {
-        return new Promise((resolve, reject) => {
-            this.database.find({}).sort({ updatedAt: 1 }).exec((err, docs) => {
-                if(err) {
-                    reject(err);
-                } else {
-                    resolve(docs);
-                }
-            })
-        });
+    async fetch(page, limit) {
+        try {
+            const skip = page ? page * limit : 0;
+            limit = limit || 1000;
+            const data = await this.collection.find().sort({u:1}).skip(skip).limit(limit).toArray();
+            return data;
+        } catch (err) {
+            return err;
+        }
     }
 
-    _init() {
-        this._asyncAdd = promisify(this.database.insert.bind(this.database));
-        this._asyncRemove = promisify(this.database.remove.bind(this.database));
-        this._asyncUpdate = promisify(this.database.update.bind(this.database));
+    async init(url, db, collection) {
+        console.log(url, db, collection);
+        const client = new MongoClient(url);
+        try {
+            await client.connect();
+            const database = client.db(db);
+            this.collection = database.collection(collection);
+        } catch (err) {
+            console.log(err.stack);
+        }
     }
 
 }

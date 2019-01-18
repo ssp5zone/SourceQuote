@@ -4,9 +4,8 @@ class Quote {
         this.source = raw.source || raw.s;
         this.quote = raw.quote || raw.q;
         this.type = raw.type || raw.t;
-        if(raw.id || raw._id){
-            this.id = raw.id || raw._id;
-        }
+        this.updatedAt = raw.updatedAt || raw.u || this.getStamp();
+        this.id = raw.id || raw._id;
     }
 
     getMinified() {
@@ -14,18 +13,23 @@ class Quote {
             s: this.source,
             q: this.quote,
             t: this.type,
+            u: this.updatedAt
         };
         if(this.id) {
-            min._id = this.id;
+            min._id = this.id
         }
         return min;
+
     }
 
     static fromMin(min) {
         if(!min) return undefined;
         let quote = new Quote(min);
-        quote.id = min._id;
         return quote;
+    }
+    
+    getStamp() {
+        return Date.now();
     }
 
 }
