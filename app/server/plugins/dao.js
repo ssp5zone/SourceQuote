@@ -19,7 +19,11 @@ class Dao {
     
     async remove(id) {
         try {
-            const result = await this.collection.deleteOne({_id: new ObjectId(id)});
+            // Update on newer format
+            if(id != null && id.length === 24) {
+                id = new ObjectId(id);
+            }
+            const result = await this.collection.deleteOne({_id: id});
             return result.deletedCount;
         }
         catch (err) {
@@ -29,7 +33,11 @@ class Dao {
     
     async update(quote) {
         try {
-            const id = new ObjectId(quote._id);
+            let id = quote._id;
+            // Update on newer format
+            if(id != null && id.length === 24) {
+                id = new ObjectId(id);
+            }
             delete quote._id;
             const result = await this.collection.updateOne({_id: id}, {$set: quote});
             return result.modifiedCount;    
@@ -51,8 +59,13 @@ class Dao {
     }
 
     async init(url, db, collection) {
-        console.log(url, db, collection);
-        const client = new MongoClient(url);
+        if (url == null) {
+            console.error("The DB URL was null");
+            console.info("1. Make sure you have a .env file");
+            console.info("2. The .env file has correct env variables set");
+            console.info("3. And you are running the app using 'heroku local web'");
+        }
+        const client = new MongoClient(url, { useNewUrlParser: true });
         try {
             await client.connect();
             const database = client.db(db);

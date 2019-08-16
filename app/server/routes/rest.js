@@ -42,6 +42,7 @@ class DynamicRoutes {
             console.log("Got a PUT request for /update_quote", req.body);
             let quote = new Quote(req.body);
             let rowsAffected = await db.update(quote.getMinified());
+            console.log(rowsAffected);
             res.send(String(rowsAffected));
          });
     }
