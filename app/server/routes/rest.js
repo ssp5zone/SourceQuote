@@ -2,9 +2,14 @@ const Dao = require("../plugins/dao");
 const Quote = require("../models/quote");
 const bodyParser = require('body-parser');
 
-const db = new Dao();
+const url = process.env.DB;
+const dbName = process.env.DBNAME;
+const collection = process.env.COLLECTION;
+
+const db = new Dao(url, dbName, collection);
 
 class DynamicRoutes {
+    
     static init(app) {
 
         // Adding middleware to understand json format
@@ -22,8 +27,9 @@ class DynamicRoutes {
          app.post('/add_quote', async (req, res) => {
             console.log("Got a POST request for add_quote", req.body);
             let quote = new Quote(req.body);
-            quote = await db.add(quote.getMinified());
-            res.send(quote); 
+            const id = await db.add(quote.getMinified());
+            console.log(id);
+            res.send(id); 
          });
          
          app.delete('/delete_quote/:id', async (req, res) => {
@@ -36,6 +42,7 @@ class DynamicRoutes {
             console.log("Got a PUT request for /update_quote", req.body);
             let quote = new Quote(req.body);
             let rowsAffected = await db.update(quote.getMinified());
+            console.log(rowsAffected);
             res.send(String(rowsAffected));
          });
     }
