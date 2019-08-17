@@ -11,6 +11,7 @@ var app = {
 	deleteModal: undefined,
 	editMode: false,
 	stashQuote: undefined,
+	quill: undefined,
 
 	loadAllQuotes: function() {
 		var _this=this;
@@ -24,7 +25,7 @@ var app = {
 	submitQuote: function() {
 		var _this=this;
 		var data = {};
-		data.quote = $('#new-quote').val();
+		data.quote = this.getQuillContent();
 		data.source= $('#new-source').val();
 		data.type= $('#new-source-type').val();
 		console.log(data.quote + ", " + data.source + ", " + data.type);
@@ -62,12 +63,12 @@ var app = {
 		console.log("Edit event triggered on: "+elementId);
 		
 		var data = {};
-		data.quote = $('#new-quote').val();
+		data.quote = this.getQuillContent();
 		data.source= $('#new-source').val();
 		data.type= $('#new-source-type').val();
 		data.id = elementId.slice(6);
 
-		console.debug(data.quote + ", " + data.source + ", " + data.type + ", " + data.id);
+		console.debug("Updating with:" + data);
 		if (data.quote && data.source) {
 			$.ajax({
 			    url: '/update_quote',
@@ -86,7 +87,7 @@ var app = {
 
 	editQuote: function (quote) {
 		this.stashQuote=quote;
-		$('#new-quote').val(quote.find('.quote').html());
+		this.setQuillContent(quote.find('.quote').html());
 		var source=quote.find('.source').text().trim();
 		var source_type=undefined;
 		if(source.lastIndexOf(")")==source.length-1 && source.lastIndexOf("(")>0) {
@@ -126,7 +127,7 @@ var app = {
 		var _this=this;
 		$('.add-quote').click(function(){
 			_this.editMode=false;
-			_this.clearModal();
+			_this.clearModal.apply(_this);
 			_this.modal.open();
 		});
 		$('#submit-quote').click(function(){
@@ -152,7 +153,7 @@ var app = {
 	renderSection: function(id,quote,source,type) {
 		var html = new Array();
 		html.push("<section class='animated bounceInDown' id='quote_"+id+"'><blockquote>");
-		html.push("<div class='quote pre-wrap'>"+quote+"</div>");
+		html.push("<div class='quote pre-wrap ql-editor'>"+quote+"</div>");
 		html.push("<div class='source-container'>— <span class='source'>"+source);
 		if (type) { html.push(" ("+type+")");}
 		html.push("</div></blockquote>");
@@ -172,8 +173,8 @@ var app = {
 		},800);
 	},
 
-	clearModal: function(argument) {
-		$('#new-quote').val("");
+	clearModal: function() {
+		this.clearQuill();
 		$('#new-source').val("");
 		$('#new-source-type').val("");
 	},
@@ -182,5 +183,40 @@ var app = {
 		this.loadAllQuotes();
 		this.modalConfig();
 		this.attachEvents();
+		this.initQuill();
 	},
+
+	/** The Editor */
+	initQuill: function() {
+		const toolbarOptions = [
+			['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+			[{ 'header': 1 }, { 'header': 2 }],               // custom button values
+			[{ 'list': 'ordered'}, { 'list': 'bullet' }],
+			[{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+			[{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+			[{ 'align': [] }],
+			['clean']                                         // remove formatting button
+		  ];
+		
+				
+		this.quill = new Quill('#new-quote', {
+			modules: {
+				toolbar: toolbarOptions
+			},
+			theme: 'snow',
+			placeholder: 'Quote..',
+		});
+	},
+
+	getQuillContent: function() {
+		return this.quill.root.innerHTML 
+	},
+
+	setQuillContent: function(html) {
+		this.quill.root.innerHTML = html;
+	},
+
+	clearQuill: function() {
+		this.setQuillContent(null);
+	}
 };

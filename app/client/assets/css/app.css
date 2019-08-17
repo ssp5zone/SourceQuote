@@ -345,8 +345,30 @@ blockquote:before {
     color: #999;
 }
 blockquote .quote {
-	/*font-style: italic;*/ /*italics make it difficult to read*/
+  padding: 0;
+  line-height: 1.5;
 }
+
+blockquote .quote h1 {
+  font-size: 2em;
+}
+
+blockquote .quote h2 {
+  font-size: 1.5em;
+}
+
+/* Fix the scroll bar */
+.ql-editor .ql-align-center {
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.ql-editor.ql-blank::before {
+  font-style: initial;
+  font-weight: 700;
+  font-size: 0.87em;
+}
+
 blockquote .source-container {
 	padding-left: 20px;
 }
