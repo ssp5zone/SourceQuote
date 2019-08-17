@@ -12,12 +12,15 @@ var app = {
 	editMode: false,
 	stashQuote: undefined,
 	quill: undefined,
+	cname: 'authored-quotes',
+	authorOf: undefined,
 
 	loadAllQuotes: function() {
 		var _this=this;
 		$.get('/get_quotes',function(data){
 			data.forEach(function(row){
 				_this.renderSection(row.id,row.quote,row.source,row.type);
+				_this.restrictAccess();
 			});
 		});
 	},
@@ -33,6 +36,7 @@ var app = {
 			$.post('/add_quote', data, function(id) {
 				console.info('Added row: ' + id);
 				_this.renderSection(id, data.quote, data.source, data.type);
+				_this.addCookie(id);
 			});
 		} else {
 			console.warn("Either the source or quote is empty.");
@@ -50,7 +54,8 @@ var app = {
 			    type: 'DELETE',
 			    success: function(result) {
 			      console.info("Deleted " + result + " row(s).");
-			      _this.unpinSection(quote);
+				  _this.unpinSection(quote);
+				  _this.removeCookie(dataId);
 			    }
 			});
 					
@@ -77,7 +82,7 @@ var app = {
 			    success: function(result) {
 			      console.info("Updated " + result + " row(s).");
 			      _this.unpinSection(_this.stashQuote);
-			      _this.renderSection(data.id, data.quote, data.source, data.type);
+				  _this.renderSection(data.id, data.quote, data.source, data.type);
 			    }
 			});
 		} else {
@@ -184,6 +189,7 @@ var app = {
 		this.modalConfig();
 		this.attachEvents();
 		this.initQuill();
+		this.readCookies();
 	},
 
 	/** The Editor */
@@ -218,5 +224,26 @@ var app = {
 
 	clearQuill: function() {
 		this.setQuillContent(null);
+	},
+
+	readCookies: function() {
+		this.authorOf = Cookies.getJSON(this.cname) || [];
+	},
+
+	addCookie: function(id) {
+		this.authorOf.push(id);
+		Cookies.set(this.cname, this.authorOf);
+	},
+
+	removeCookie: function(id) {
+		this.authorOf = this.authorOf.filter(qid => qid!=id);
+		Cookies.set(this.cname, this.authorOf);
+	},
+
+	restrictAccess: function() {
+		// Hide All Edits
+		$("section[id^='quote_'] aside").hide();
+		// Show only the one's applicable to this user
+		$("#quote_".concat(this.authorOf.join(", #quote_"))).find('aside').show();
 	}
 };
