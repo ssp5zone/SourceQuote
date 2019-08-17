@@ -32,14 +32,14 @@ var app = {
 		data.source= $('#new-source').val();
 		data.type= $('#new-source-type').val();
 		console.log(data.quote + ", " + data.source + ", " + data.type);
-		if (data.quote && data.source) {
+		if ((data.quote!=null && data.quote!="<p><br></p>") && data.source) {
 			$.post('/add_quote', data, function(id) {
 				console.info('Added row: ' + id);
 				_this.renderSection(id, data.quote, data.source, data.type);
 				_this.addCookie(id);
 			});
 		} else {
-			console.warn("Either the source or quote is empty.");
+			toastr.error("Either the source or quote is empty.", "Error");
 		}		
 	},
 
@@ -74,7 +74,7 @@ var app = {
 		data.id = elementId.slice(6);
 
 		console.debug("Updating with:" + data);
-		if (data.quote && data.source) {
+		if ((data.quote!=null && data.quote!="<p><br></p>") && data.source) {
 			$.ajax({
 			    url: '/update_quote',
 			    type: 'PUT',
@@ -86,7 +86,7 @@ var app = {
 			    }
 			});
 		} else {
-			console.warn("Either the source or quote is empty.");
+			toastr.warning("Either the source or quote is empty.", "Warning");
 		}
 	},
 
@@ -190,6 +190,7 @@ var app = {
 		this.attachEvents();
 		this.initQuill();
 		this.readCookies();
+		this.godMode();
 	},
 
 	/** The Editor */
@@ -245,5 +246,20 @@ var app = {
 		$("section[id^='quote_'] aside").hide();
 		// Show only the one's applicable to this user
 		$("#quote_".concat(this.authorOf.join(", #quote_"))).find('aside').show();
+	},
+
+	/**
+	 * A hidden god mode that allows you to edit all the 
+	 * quotes.
+	 */
+	godMode: function() {
+		var count = 0;
+		$(".copy-left").on('click', () => {
+			if(++count > 10) {
+				$("section[id^='quote_'] aside").show();
+				toastr.success("Congrats! You are now the admin.", "God Mode");
+				$(".copy-left").off('click');
+			}
+		});
 	}
 };

@@ -369,6 +369,11 @@ blockquote .quote h2 {
   font-size: 0.87em;
 }
 
+/* Fix the opacity of Toastr */
+#toast-container>div {
+  opacity: 0.95;
+}
+
 blockquote .source-container {
 	padding-left: 20px;
 }
