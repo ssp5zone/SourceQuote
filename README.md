@@ -23,6 +23,7 @@ After downloading the clone of this repo, go to the clones path and:
 npm install
   ```
 2._(Optional)_ Start the mongo DB if using a local one.
+
 3.Add a `.env` file in the root path with following properties
 ```env
 DB=<Your_local_or_remote_DB_URL>
