@@ -1,6 +1,8 @@
 # SourceQuote
 
-> A website to put down the quotes that you read, heard, saw, thought and felt.
+> A website to put down quotes that you read, heard, saw, thought and felt.
+>
+> \- **Readme (Github.com)**
 
 ![alt text](docs/screenshot.png)
 
