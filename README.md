@@ -41,5 +41,4 @@ Once started you can view the page at `http://localhost:8787`.
 
 ## Licence
 
-Copy-Left Licence.
-Free to copy, distribute and use.
+MIT Licence. Free to copy, distribute and use.
