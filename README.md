@@ -1,7 +1,8 @@
 # SourceQuote
 
 > A website to put down quotes that you read, heard, saw, thought and felt.
->
+> Things that made to simle, laugh or tear-up. And those that just made to stare at the wall for few minutes.
+> 
 > \- **Readme (Github.com)**
 
 ![alt text](docs/screenshot.png)
