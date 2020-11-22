@@ -1,6 +1,6 @@
 # SourceQuote
 
-A website to put down quote you read, header, saw, thought and felt.
+> A website to put down the quotes that you read, heard, saw, thought and felt.
 
 ![alt text](docs/screenshot.png)
 
