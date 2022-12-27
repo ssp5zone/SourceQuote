@@ -1,11 +1,17 @@
-const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectId;
 
-class Dao {
 
-    constructor(url, db, collection) {
-        this.init(url, db, collection);
+/**
+ * Quotes DAO
+ * ********************************
+ * The DAO layer specifically for the Quotes Collection.
+ */
+class QuotesDao {
+
+    constructor(collection) {
+        this.collection = collection;
     }
+
 
     async add(quote) {
         try {
@@ -58,23 +64,6 @@ class Dao {
         }
     }
 
-    async init(url, db, collection) {
-        if (url == null) {
-            console.error("The DB URL was null");
-            console.info("1. Make sure you have a .env file");
-            console.info("2. The .env file has correct env variables set");
-            console.info("3. And you are running the app using 'heroku local web'");
-        }
-        const client = new MongoClient(url, { useNewUrlParser: true });
-        try {
-            await client.connect();
-            const database = client.db(db);
-            this.collection = database.collection(collection);
-        } catch (err) {
-            console.log(err.stack);
-        }
-    }
-
 }
 
-module.exports = Dao;
+module.exports = QuotesDao;

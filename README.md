@@ -7,15 +7,14 @@
 
 ![alt text](docs/screenshot.png)
 
-Checkout the Live site: [SourceQuote](https://vast-hollows-31190.herokuapp.com/).
+Checkout the Live site: [SourceQuote](https://drab-teal-coypu-belt.cyclic.app/).
 
 * **Note:** The site may be down during deployment.
 
 ## Requirements
 
 1. Node.js
-2. Heroku CLI
-3. MongoDB _(A local or remote installtion like Mongo Atlas)_
+2. MongoDB _(A local or remote installtion like Mongo Atlas)_
 
 ## Build
 
@@ -35,7 +34,7 @@ COLLECTION=<Your_DB_COLLECTION>
 ```
 4.Start the server
   ```bash
-heroku local web
+npm run local
   ```
 
 ![alt text](docs/run.png)

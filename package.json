@@ -10,11 +10,14 @@
     "mongodb": "^3.1.12"
   },
   "scripts": {
-    "start": "node app/server/main",
-    "test": "mocha app/server/tests/dao.spec"
+    "start": "node src/app/server/main",
+    "local": "node src/app/server/local",
+    "test": "mocha src/tests/dao.spec"
   },
   "devDependencies": {
+    "@types/mongodb": "^4.0.7",
     "chai": "^4.2.0",
+    "dotenv": "^16.0.3",
     "mocha": "^5.2.0"
   },
   "engines": {
