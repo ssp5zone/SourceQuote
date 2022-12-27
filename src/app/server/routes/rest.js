@@ -1,4 +1,4 @@
-const Dao = require("../plugins/dao");
+const Dao = require("../db/dao");
 const Quote = require("../models/quote");
 const bodyParser = require('body-parser');
 
