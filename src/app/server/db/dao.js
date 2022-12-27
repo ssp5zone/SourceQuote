@@ -1,75 +1,31 @@
+const QuotesDao = require('./quotes/QuotesDao');
+
 const MongoClient = require('mongodb').MongoClient;
-const ObjectId = require('mongodb').ObjectId;
+
+const url = process.env.DB;
+const dbName = process.env.DBNAME;
+const collection = process.env.COLLECTION;
 
 class Dao {
 
-    constructor(url, db, collection) {
-        this.init(url, db, collection);
-    }
+    static Quotes = null;
 
-    async add(quote) {
-        try {
-            const result = await this.collection.insertOne(quote);
-            return result.insertedId;    
-        } catch (err) {
-            return err;
-        }
-        
-    }
-    
-    async remove(id) {
-        try {
-            // Update on newer format
-            if(id != null && id.length === 24) {
-                id = new ObjectId(id);
-            }
-            const result = await this.collection.deleteOne({_id: id});
-            return result.deletedCount;
-        }
-        catch (err) {
-            return err;
-        }
-    } 
-    
-    async update(quote) {
-        try {
-            let id = quote._id;
-            // Update on newer format
-            if(id != null && id.length === 24) {
-                id = new ObjectId(id);
-            }
-            delete quote._id;
-            const result = await this.collection.updateOne({_id: id}, {$set: quote});
-            return result.modifiedCount;    
-        } catch (err) {
-            return err;
-        }
-        
-    } 
-    
-    async fetch(page, limit) {
-        try {
-            const skip = page ? page * limit : 0;
-            limit = limit || 1000;
-            const data = await this.collection.find().sort({u:1}).skip(skip).limit(limit).toArray();
-            return data;
-        } catch (err) {
-            return err;
-        }
-    }
-
-    async init(url, db, collection) {
+    static async init() {
         if (url == null) {
             console.error("The DB URL was null");
             console.info("1. Make sure you have a .env file");
             console.info("2. The .env file has correct env variables set");
-            console.info("3. And you are running the app using 'heroku local web'");
+            console.info("3. And you are running the app using 'npm run local'");
         }
-        const client = new MongoClient(url, { useNewUrlParser: true });
+        const client = new MongoClient(url, { 
+            useNewUrlParser: true,
+            useUnifiedTopology: true, 
+        });
         try {
             await client.connect();
-            const database = client.db(db);
-            this.collection = database.collection(collection);
+            const database = client.db(dbName);
+            const quotesCollection = database.collection(collection);
+            Dao.Quotes = new QuotesDao(quotesCollection); 
         } catch (err) {
             console.log(err.stack);
         }
