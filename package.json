@@ -15,6 +15,7 @@
     "test": "mocha src/tests/dao.spec"
   },
   "devDependencies": {
+    "@types/mongodb": "^4.0.7",
     "chai": "^4.2.0",
     "dotenv": "^16.0.3",
     "mocha": "^5.2.0"
