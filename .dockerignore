@@ -1,0 +1,13 @@
+# Ignore node_modules
+**/node_modules
+
+# Ignore alll doc files
+LICENSE
+.gitignore
+**/docs
+
+# Do not copy the .env when using from local
+.env
+
+# Ignore the local MongoDB data
+**/mongo_data

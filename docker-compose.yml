@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+
+  sourcequote:
+    container_name: compose-sourcequote
+    image: sourcequote:latest
+    restart: always
+    ports:
+      - "8091:8787"
+    environment:
+      COLLECTION: quotes
+      DB: mongodb://root:example@mongo:27017/
+      DBNAME: local
+    depends_on:
+      - mongo
+
+  mongo:
+    container_name: compose-mongo
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./mongo_data:/data/db
+  
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8086:8081
+    environment:
+      ME_CONFIG_BASICAUTH: false
+      ME_CONFIG_BASICAUTH_USERNAME: ""
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
