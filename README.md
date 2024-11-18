@@ -7,7 +7,7 @@
 
 ![alt text](docs/screenshot.png)
 
-Checkout the Live site: [SourceQuote](https://drab-teal-coypu-belt.cyclic.app/).
+Checkout the Live site: [SourceQuote](https://sourcequote.onrender.com/).
 
 * **Note:** The site may be down during deployment.
 
